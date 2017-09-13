@@ -14,7 +14,7 @@ global outreg_fa "X:\Rosa\outreg\for_Ahmad cj"
 ********************************************************************************/
 
 clear
-local db "DRIVER={MySQL ODBC 5.1 Driver};SERVER=172.30.66.22;DATABASE=weicheng;UID=wcheng;PWD=aA73176!NEYHDC2JxEp3"
+local db "DRIVER={MySQL ODBC 5.1 Driver};SERVER=[server name];DATABASE=[database table];UID=[username];PWD=[password]"
 local sql2 "SELECT * FROM sed_occ_link16_all_v4"
 odbc load, exec("`sql2'") conn("`db'") clear
 
