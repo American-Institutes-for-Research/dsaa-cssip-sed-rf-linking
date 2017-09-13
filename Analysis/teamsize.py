@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import text
 import os
 os.chdir("G:/SED")
-sm = create_engine("mysql+mysqldb://cjones:LCnKGB0*38!fD47GPmpl@localhost:3306/starmetrics")
+sm = create_engine("mysql+mysqldb://[username]:[password]@localhost:3306/starmetrics")
 csvfile = open("teamsize.csv", "wb")
 writer = csv.writer(csvfile)
 data = pd.read_csv("for_ahmad.csv")
