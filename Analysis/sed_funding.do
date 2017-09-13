@@ -19,7 +19,8 @@ global outreg "X:\Rosa\outreg\sed_funding_v3_2year_nostagger_wc 7-1-2016"
 ********************************************************************************
 
 clear
-local db "DRIVER={MySQL ODBC 5.1 Driver};SERVER=172.30.66.22;DATABASE=weicheng;UID=wcheng;PWD=aA73176!NEYHDC2JxEp3"
+*fill connection with server name, username and password
+local db "DRIVER={MySQL ODBC 5.1 Driver};SERVER=172.30.66.22;DATABASE=[database name];UID=[username];PWD=[password]"
 local sql2 "SELECT * FROM sed_occ_link16_v3"
 odbc load, exec("`sql2'") conn("`db'") clear
 
@@ -354,7 +355,7 @@ drop _merge
  replace SRCEPRIM =	"Loans (from any source)" if SRCEPRIM=="H"
  replace SRCEPRIM =	"Personal savings" if SRCEPRIM=="I"
  replace SRCEPRIM =	"Personal earnings during graduate school" if SRCEPRIM=="J"
- replace SRCEPRIM =	"Spouse’s, partner’s, or family’s earnings or savings" if SRCEPRIM=="K"
+ replace SRCEPRIM =	"SpouseÂ’s, partnerÂ’s, or familyÂ’s earnings or savings" if SRCEPRIM=="K"
  replace SRCEPRIM =	"Employer reimbursement/assistance" if SRCEPRIM=="L"
  replace SRCEPRIM =	"Foreign (non-U.S.)" if SRCEPRIM=="M"
  replace SRCEPRIM =	"Other" if SRCEPRIM=="N"
@@ -370,10 +371,10 @@ label var SRCEG "Internship, clinical residency"
 label var SRCEH "Loans (from any source)"
 label var SRCEI "Personal savings"
 label var SRCEJ "Personal earnings during graduate school"
-label var SRCEK "Spouse’s, partner’s, or family’s earnings or savings"
+label var SRCEK "SpouseÂ’s, partnerÂ’s, or familyÂ’s earnings or savings"
 label var SRCEL "Employer reimbursement/assistance"
 label var SRCEM "Foreign (non-U.S.) support"
-label var SRCEN "Other – specify"
+label var SRCEN "Other Â– specify"
 
 gen SRCEMISS = 1 if SRCEA==. & SRCEB==. & SRCEC==. & SRCED==. & SRCEE==. & SRCEF==. & SRCEG==. ///
 					 & SRCEH==. & SRCEI==. & SRCEJ==. & SRCEK==. & SRCEL==. & SRCEM==. & SRCEN==.
