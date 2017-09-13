@@ -19,7 +19,7 @@ global outreg "X:\Rosa\outreg\sed_match_notmatch_v1 cj"
 ********************************************************************************
 
 clear
-local db "DRIVER={MySQL ODBC 5.1 Driver};SERVER=172.30.66.22;DATABASE=weicheng;UID=wcheng;PWD=aA73176!NEYHDC2JxEp3"
+local db "DRIVER={MySQL ODBC 5.1 Driver};SERVER=[server name];DATABASE=[database name];UID=[username];PWD=[password]"
 local sql2 "SELECT * FROM sed_occ_match_notmatch_v1"
 odbc load, exec("`sql2'") conn("`db'") clear
 
@@ -69,7 +69,7 @@ replace `var'=0 if match==0
  replace SRCEPRIM =	"Loans (from any source)" if SRCEPRIM=="H"
  replace SRCEPRIM =	"Personal savings" if SRCEPRIM=="I"
  replace SRCEPRIM =	"Personal earnings during graduate school" if SRCEPRIM=="J"
- replace SRCEPRIM =	"Spouse’s, partner’s, or family’s earnings or savings" if SRCEPRIM=="K"
+ replace SRCEPRIM =	"Spouseâ€™s, partnerâ€™s, or familyâ€™s earnings or savings" if SRCEPRIM=="K"
  replace SRCEPRIM =	"Employer reimbursement/assistance" if SRCEPRIM=="L"
  replace SRCEPRIM =	"Foreign (non-U.S.)" if SRCEPRIM=="M"
  replace SRCEPRIM =	"Other" if SRCEPRIM=="N"
@@ -85,10 +85,10 @@ label var SRCEG "Internship, clinical residency"
 label var SRCEH "Loans (from any source)"
 label var SRCEI "Personal savings"
 label var SRCEJ "Personal earnings during graduate school"
-label var SRCEK "Spouse’s, partner’s, or family’s earnings or savings"
+label var SRCEK "Spouseâ€™s, partnerâ€™s, or familyâ€™s earnings or savings"
 label var SRCEL "Employer reimbursement/assistance"
 label var SRCEM "Foreign (non-U.S.) support"
-label var SRCEN "Other – specify"
+label var SRCEN "Other â€“ specify"
 
 gen SRCEMISS = 1 if SRCEA==. & SRCEB==. & SRCEC==. & SRCED==. & SRCEE==. & SRCEF==. & SRCEG==. ///
 					 & SRCEH==. & SRCEI==. & SRCEJ==. & SRCEK==. & SRCEL==. & SRCEM==. & SRCEN==.
@@ -320,7 +320,7 @@ preserve
 		recode SRCED SRCEC SRCEA SRCEB SRCEI SRCEK SRCEH SRCEJ SRCEF SRCEG SRCEE SRCEM SRCEL SRCEMISS (2=0)
 		collapse (sum)SRCED SRCEC SRCEA SRCEB SRCEI SRCEK SRCEH SRCEJ SRCEF SRCEG SRCEE SRCEM SRCEL SRCEMISS
 		
-		local _w1 `" "Research assistantship" "Teaching assistantship" "Fellowship, scholarship" "Grant"  "Personal savings" "Spouse/partner/family’s earnings/savings" "Loans"  "Personal earnings during graduate school" "Traineeship" "Internship, clinical residency" "Other assistantship" "Foreign (non-U.S.) support" "Employer reimbursement/assistance" "Missing" "'
+		local _w1 `" "Research assistantship" "Teaching assistantship" "Fellowship, scholarship" "Grant"  "Personal savings" "Spouse/partner/familyâ€™s earnings/savings" "Loans"  "Personal earnings during graduate school" "Traineeship" "Internship, clinical residency" "Other assistantship" "Foreign (non-U.S.) support" "Employer reimbursement/assistance" "Missing" "'
 		local _w2 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 		
 		foreach var in SRCED SRCEC SRCEA SRCEB SRCEI SRCEK SRCEH SRCEJ SRCEF SRCEG SRCEE SRCEM SRCEL SRCEMISS{
