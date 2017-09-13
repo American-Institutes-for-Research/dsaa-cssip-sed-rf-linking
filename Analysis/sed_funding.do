@@ -20,7 +20,7 @@ global outreg "X:\Rosa\outreg\sed_funding_v3_2year_nostagger_wc 7-1-2016"
 
 clear
 *fill connection with server name, username and password
-local db "DRIVER={MySQL ODBC 5.1 Driver};SERVER=172.30.66.22;DATABASE=[database name];UID=[username];PWD=[password]"
+local db "DRIVER={MySQL ODBC 5.1 Driver};SERVER=[server name];DATABASE=[database name];UID=[username];PWD=[password]"
 local sql2 "SELECT * FROM sed_occ_link16_v3"
 odbc load, exec("`sql2'") conn("`db'") clear
 
@@ -28,24 +28,7 @@ odbc load, exec("`sql2'") conn("`db'") clear
 drop if university == "UChicago"|university == "UIndiana"|university == "UIowa"
 
 drop if PHDFY<2011
-/*
-. tab university min_date
 
-           |                                        min_date
-university | 01oct1999  01jul2001  01jan2005  01jul2007  01jan2008  01jul2008  01jan2010  01jul2010 |     Total
------------+----------------------------------------------------------------------------------------+----------
-   Caltech |         1          0          0          0          0          0          0          0 |         1 
-       OSU |         0          0          1          0          0          0          0          0 |         1 
-       PSU |         0          0          0          1          0          0          0          0 |         1 
-    Purdue |         0          0          0          0          1          0          0          0 |         1 
-  UIndiana |         0          0          0          0          0          0          0          1 |         1 
-     UIowa |         0          0          0          0          0          0          1          0 |         1 
-       UMN |         0          0          0          0          0          1          0          0 |         1 
-UWisconsin |         0          0          0          0          1          0          0          0 |         1 
-     Umich |         0          1          0          0          0          0          0          0 |         1 
------------+----------------------------------------------------------------------------------------+----------
-     Total |         1          1          1          1          2          1          1          1 |         9 
-*/
 /*
 drop if PHDCY < 2003 & university == "Caltech"
 drop if PHDCY < 2004 & university == "Umich"
@@ -288,7 +271,7 @@ save "${data}\umetrics_sed_matched_processed.dta", replace
 
 preserve
 clear
-local db "DRIVER={MySQL ODBC 5.1 Driver};SERVER=172.30.66.22;DATABASE=weicheng;UID=wcheng;PWD=aA73176!NEYHDC2JxEp3"
+local db "DRIVER={MySQL ODBC 5.1 Driver};SERVER=[server name];DATABASE=[database name];UID=[username];PWD=[password]
 local sql2 "SELECT * FROM sed_occ_match_notmatch_v2"
 odbc load, exec("`sql2'") conn("`db'") clear
 
